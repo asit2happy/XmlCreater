@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><webServiceRequestEnvelope>
+	<versionedIdentifier>
+		<value>BT5YW8ZW-80-78_1</value>
+		<source>Aib</source>
+		<version>2</version>
+	</versionedIdentifier>
+	<requestedServiceType>UpdateSimProfileStatus</requestedServiceType>
+	<request>
+		<upd:UpdateSimProfileStatusRequest xmlns:upd="http://ccm.intra.bt.com/RoBTMMNS/UpdateSimProfileStatusRequest">
+			<stan:standardHeader xmlns:stan="http://wsi.nat.bt.com/2005/06/StandardHeader/">
+				<stan:e2e>
+					<stan:E2EDATA>1.18=app09704:4dl0gqq2i1:4dl0gqr32i,1.16=APP10865:4dl0gq0ye1:4dl0gq35dn,1.17=app09704:4dl0gqa7v7:4dl0gqk1p9,1.14=APP10865:4dl0gmj6nt:4dl0gmlcd4,1.15=app09704:4dl0gorls2:4dl0got41q,10=6665 hwmsus00563,11=REQ,13=logicalQueue:Aib/ManageMobileNumberService/ARM,15=AIB:app09704,16=logicalQueue:Aib/ManageMobileNumberService/ARM,19=1.1.18.1.1.2.1.1.1.1.1.1.1,1.12=app09704:1sbr8ga2fu:1sbr8girc1,1.13=app09704:4dl0gmb856:4dl0gmc5s9,1.10=:,1.11=APP10865:1sapqgu3ei:,1.1=app09704:1s6og6cwmo:1s6og6m3m9,4=RoBTESB-default,1.2=app09704:1s79mfpuwt:1s79mg2q6k,1.3=:,6=PCKlt;010,1.4=APP10865:1s877y1miz:,7=69 SAAS1BTWFUSER,1.5=app09704:1s9qa6opl5:1s9qa74urp,8=4080615569286299,1.6=app09704:1sak83qrq6:1sak844y3b,9=200711085069,1.7=:,1.8=APP10865:1saka99vwc:,1.9=app09704:1sapnpxp6w:1sapnqcf72</stan:E2EDATA>
+				</stan:e2e>
+				<stan:serviceState>
+					<stan:stateCode>OK</stan:stateCode>
+				</stan:serviceState>
+				<stan:serviceAddressing>
+					<stan:from>AIB</stan:from>
+					<stan:to>
+						<stan:address>RoBTMMNS</stan:address>
+					</stan:to>
+					<stan:replyTo>
+						<stan:address>AIB</stan:address>
+					</stan:replyTo>
+					<stan:faultTo>
+						<stan:address>AIB</stan:address>
+					</stan:faultTo>
+					<stan:messageId>Aib/BT5X87P3-80-78_1:2</stan:messageId>
+					<stan:serviceName>updateSimProfileStatus</stan:serviceName>
+					<stan:action>UpdateSimProfileStatusRequest</stan:action>
+				</stan:serviceAddressing>
+			</stan:standardHeader>
+			<v1:updateSimProfileStatus xmlns:v1="http://www.ee.co.uk/excalibur_es/crm/excalibur/service/ArmResource/ArmResourceRequest/v1.0">
+				<message>
+					<systemName>BTUKB</systemName>
+					<iccid>89443028626195414780</iccid>
+					<curIccidStatus>AR</curIccidStatus>
+					<newIccidStatus>AI</newIccidStatus>
+				</message>
+			</v1:updateSimProfileStatus>
+		</upd:UpdateSimProfileStatusRequest>
+	</request>
+</webServiceRequestEnvelope>
