@@ -59,21 +59,26 @@ public class XMLModifier {
 					setTagValue("value", element, orderid);
 				}
 
-				
-				NodeList nodeList2= doc.getElementsByTagNameNS("stan", "serviceAddressing");
-				
-				if(nodeList2.item(4).getNodeType()== Node.ELEMENT_NODE) 
-				{ 	Element e2= (Element)nodeList2.item(4); 
-					setTagValue("stan:messageId", e2, orderid);
-				}
+				/*
+				 * NodeList nodeList2= doc.getElementsByTagNameNS("stan", "serviceAddressing");
+				 * 
+				 * if(nodeList2.item(4).getNodeType()== Node.ELEMENT_NODE) { Element e2=
+				 * (Element)nodeList2.item(4); setTagValue("stan:messageId", e2, orderid); }
 				 
+				
+				NodeList nodeList3 = doc.getElementsByTagNameNS("v1", "updateSimProfileStatus");
 
+				if (nodeList.item(5).getNodeType() == Node.ELEMENT_NODE) {
+					Element element = (Element) nodeList.item(5);
+					setTagValue("value", element, orderid);
+				}
+					*/
 				// The following logic is to write into new xmlfile
 				TransformerFactory transformerFactory = TransformerFactory.newInstance();
 				Transformer transformer = transformerFactory.newTransformer();
 				DOMSource source = new DOMSource(doc);
 				StreamResult result = new StreamResult(
-						new File("C:\\Users\\611329859\\Documents\\output" + orderid + "-80-78_1.xml"));
+						new File("C:\\Users\\611329859\\Documents\\output\\" + orderid + "-80-78_1.xml"));
 				transformer.transform(source, result);
 
 				System.out.println("Done");
@@ -113,5 +118,11 @@ public class XMLModifier {
 	 * temp=node.getNodeValue().substring(node.getNodeValue().indexOf("-"),node.
 	 * getNodeValue().length()); node.setTextContent(value+temp); }
 	 */
+	private static void setTagValue3(String tag, Element element, String value) {
+		NodeList nodeList = element.getElementsByTagName(tag).item(0).getChildNodes();
+		Node node = (Node) nodeList.item(0);
+		String temp = node.getNodeValue().substring(node.getNodeValue().indexOf("-"), node.getNodeValue().length());
+		node.setTextContent(value + temp);
+	}
 
 }

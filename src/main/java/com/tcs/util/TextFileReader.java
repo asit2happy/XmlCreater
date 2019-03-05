@@ -13,11 +13,13 @@ public class TextFileReader {
 				BufferedReader br = new BufferedReader(fr);
 				String line;
 				String[] value=new String[5];
+				String[] value2= new String[5];
 				int i=0;
 				while((line = br.readLine()) != null){
 					
 				    //process the line
 					value[i]=line.substring(0, line.indexOf(","));
+					value2[i]= line.substring(line.indexOf(",")+1, line.length());
 					i++;
 				}
 				
