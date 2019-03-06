@@ -31,6 +31,8 @@ import org.xml.sax.SAXException;
  *         </versionedIdentifier>
  *         </webServiceRequestEnvelope>
  *
+ *
+ *This utility helps 
  * 
  */
 public class XMLModifier {
@@ -38,8 +40,18 @@ public class XMLModifier {
 	public void xmlModifierUtil() throws IOException {
 
 		TextFileReader tfr = new TextFileReader();
-		for (int i = 0; i < tfr.getOrderId().length; i++) {
-			String orderid = tfr.getOrderId()[i];
+		String[] orderidArray = (String[]) tfr.getOrderId().get(0);//value
+		String[] iccidArray = (String[]) tfr.getOrderId().get(1);//value2
+
+
+		for (int i = 0; i < orderidArray.length; i++) {
+			String orderid=orderidArray[i];
+			System.out.println("###########"+orderid);
+			
+			String iccid=iccidArray[i];
+			System.out.println("###########"+iccid);
+
+			
 
 			String filePath = "demo.xml";
 			File xmlFile = new File(filePath);
@@ -58,6 +70,23 @@ public class XMLModifier {
 					Element element = (Element) nodeList.item(0);
 					setTagValue("value", element, orderid);
 				}
+				
+				NodeList nodeList2 = doc.getElementsByTagName("request");
+				Element element2 = (Element) nodeList2.item(0);
+				//NodeList nodeList3 = element2.getElementsByTagName("upd:UpdateSimProfileStatusRequest").item(0).getChildNodes();
+				//Element e=(Element)nodeList3.item(0).getChildNodes().item(2);
+				/*
+				 * NodeList nodeList4 =
+				 * element2.getElementsByTagName("stan:messageId").item(0).getChildNodes();
+				 * 
+				 * Node node = (Node) nodeList4.item(0);
+				 * System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@"+node.getNodeName()+" "+node.
+				 * getNodeValue());
+				 */		
+				setTagValue("stan:messageId", element2, orderid);
+
+
+//upd:UpdateSimProfileStatusRequest
 
 				/*
 				 * NodeList nodeList2= doc.getElementsByTagNameNS("stan", "serviceAddressing");
@@ -78,7 +107,7 @@ public class XMLModifier {
 				Transformer transformer = transformerFactory.newTransformer();
 				DOMSource source = new DOMSource(doc);
 				StreamResult result = new StreamResult(
-						new File("C:\\Users\\611329859\\Documents\\output\\" + orderid + "-80-78_1.xml"));
+						new File("E:\\output\\" + orderid + "-80-78_1.xml"));
 				transformer.transform(source, result);
 
 				System.out.println("Done");
@@ -106,8 +135,10 @@ public class XMLModifier {
 	private static void setTagValue(String tag, Element element, String value) {
 		NodeList nodeList = element.getElementsByTagName(tag).item(0).getChildNodes();
 		Node node = (Node) nodeList.item(0);
-		String temp = node.getNodeValue().substring(node.getNodeValue().indexOf("-"), node.getNodeValue().length());
-		node.setTextContent(value + temp);
+		String nodeValue=node.getNodeValue();
+		String temp = nodeValue.substring(nodeValue.indexOf("-"), nodeValue.length());
+		String finalValue=nodeValue.contains("Aib") ? "Aib/"+value+temp: value+temp;
+		node.setTextContent(finalValue);
 	}
 
 	
